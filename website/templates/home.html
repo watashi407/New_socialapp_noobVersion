@@ -1,0 +1,371 @@
+{% extends "base.html" %}{% block title %} HOME {% endblock %}
+
+<!-- home content -->
+{% block content %}
+
+<!-- homepage style -->
+
+<!-- first content -->
+<div class="main scrolls mx-auto">
+<section class="my-1 mb-5" style="overflow-x: hidden;" >
+  <div class="row gx-5 mb-5">
+
+    <div class="col-12 col-sm-12 col-md-6 col-lg-8  text-white d-flex justify-content-start mx-auto">
+      <article
+        class="btn btn-primary position-relative bg-transparent border-0 float-start mx-4"
+      >
+        <div class="float-start howtoplayimage border-0 animate__animated animate__bounce me-5 first-content">
+          <h5 class="animate__animated animate__fadeInLeft"></h5>
+        </div>
+        <!-- card show whne phone media -->
+        <div class="warp-card-small animate__animated animate__fadeInLeft warp-card me-5 first-content">
+        <div class="card card-apply shadow" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title">
+Axie Infinity Coaching</h5>
+              <p class="card-subtitle mb-2  badge text-black text-uppercase " style=" font-size: 10px;" >learn the best start to pros </p>
+              <hr>
+              <p class="card-tex" style="font-family: Monospace;"> 
+                Play with and learn from the best Axie Infinity players in the world. Share experties to everyone.
+              </p>
+            <button class="btn btn-small text-white bg-gradient" data-bs-toggle="modal" data-bs-target="#exampleModal">Apply Axie Couching</button>
+            </div>
+          </div>
+        </div>
+
+        <span
+          class="position-absolute top-50  start-100 translate-middle p-2 bg-transparent border-0 animate__animated animate__fadeInLeft warp-card"
+        >
+          <div class="card card-apply shadow" style="width: 20rem">
+            <div class="card-body">
+              <h5 class="card-title">Axie Infinity Coaching</h5>
+              <p class="card-subtitle mb-2  badge text-black text-uppercase " style=" font-size: 10px;" >learn the best start to pros </p>
+              <hr>
+              <p class="card-tex" style="font-family: Monospace;"> 
+                Play with and learn from the best Axie Infinity players in the world. Share experties to everyone.
+              </p>
+            <button class="btn btn-small text-white bg-gradient" data-bs-toggle="modal" data-bs-target="#exampleModal">Apply Axie Couching</button>
+            </div>
+          </div>
+    
+      </article>
+    </div>
+
+    <!-- side tab -->
+    <div
+      class="col-12  col-sm-10 col-lg-3  bg-transparent sidetab animate__animated animate__slideInUp d-flex justify-content-start mx-auto"
+      style="height: 450px ;width: 28rem;"
+    >
+    
+<div class="card card-apply-side  bg-transparent shadow mx-auto" style="width:40rem;">
+
+  <div class="mt-2 p-2`">
+  <form action="{{ url_for('views.home')}}" method="GET">
+    <div class="input-group input-group-sm mb-3 p-2">
+  <input type="search" name="search" placeholder="Search for coaches"  class="form-control w-50" >
+  <button type="submit" class="input-group-text" id="inputGroup-sizing-sm"><img src="{{url_for('static',filename='image/search.png')}}" alt="" height="30" width="30"></button>
+</div>
+
+</div>
+  </form>
+  <span class="btn btn-sm bg-warning ms-2 w-50 text-white">Active Coach</span>
+  <div class="card-body overflow-auto bg-transparent ">
+<!-- search tab -->
+
+    <!--  -->
+    <div class="list-group ">
+
+        
+  {% for note in searched if note.name %}
+<div class="card mt-2">
+  <div class="card-body ">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#xx{{note.id}}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+        Coach : {{ note.name }}
+      </button>
+    </h2>
+    <div id="xx{{note.id}}" class="accordion-collapse collapse " aria-labelledby="panelsStayOpen-headingOne">
+      <div class="accordion-body contianer p-2 m-2">
+        <strong class="p-1">"{{note.descrip}}".</strong>
+    </div>
+    <button class="btn btn-warning w-50 float-end btn-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#x{{note.id}}" aria-controls="offcanvasTop">more info</button>
+  </div>
+</div>
+  </div>
+</div>
+
+
+
+</div>
+
+
+
+{% else %} 
+
+<h1 class="bg-transparent text-dark mt-5 fw-bold fs-3  text-center rounded">NO DATA OCCURED</h1>
+
+    
+
+{% endfor %}
+
+
+
+  </div>
+</div>
+    </div>
+    
+  </div>
+</section>
+
+
+
+<!-- end of first content -->
+<div class="container position-relative">
+  
+<hr class="p-1 text-dark ">
+<span class="text-white position-absolute top-50 start-50 translate-middle badge rounded-pill ">
+  <div class="p-2 bg-white text-dark rounded-4 animate__animated animate__bounce badge">COACHES</div>
+</span>
+</div>
+
+<!-- second content -->
+<section class="container mt-5 mx-auto">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner p-5 mt-5">
+    <!-- card carousel -->
+    <div class="carousel-item active">
+
+   
+        <div class="col-sm-6 col-md-6 mx-auto">
+    <div class="card card-info" style="height: 250px; width: 550px;">
+      <div class="card-body position-relative text-white">
+        <h5 class="card-title mt-5"></h5>
+        <p class="card-text"></p>
+              <span class="position-absolute top-0 start-0 ms-5 translate-middle badge rounded-pill bg-transparent" style="z-index: 1180;">
+<img src="{{url_for('static',filename='image/add.png')}}" alt="">
+    <span class="visually-hidden">unread messages</span>
+  </span>
+      </div>
+      <div class="text-center mx-auto p-3"><!-- Facebook -->
+  
+<i type="button" class="fab fa-facebook-f text-primary mx-2 btn"></i>
+
+<!-- Twitter -->
+<i type="button" class="fab fa-twitter text-primary mx-2 btn"></i>
+
+<!-- Google -->
+<i type="button" class="fab fa-google mx-2 btn text-success"></i>
+      </div>
+    </div>
+  </div>
+    </div>
+
+
+   {% for note in searched %}  
+    <div class="carousel-item ">
+
+   
+        <div class="col-sm-6 col-md-6 mx-auto">
+    <div class="card card-info" style="height: 300px; width: 550px;">
+      <div class="card-body card-info-body position-relative text-center text-white">
+        <h2 class="card-title mt-3  mx-auto text-capitalize">{{note.name}}</h2>
+        <hr>
+        <blockquote class="blockquote ">
+  <p style="font-size: 15px;">{{note.experience}}</p>
+</blockquote>
+
+<blockquote class="blockquote mb-5">
+  <p>{{note.descrip}}</p>
+
+   <button class="btn btn-warning  btn-sm float-end" type="button" style="width:5rem;" data-bs-toggle="offcanvas" data-bs-target="#x{{note.id}}" aria-controls="offcanvasTop">more info</button>
+</blockquote>
+ 
+
+
+      <div class="text-center  mt-2 mx-auto p-1"><!-- Facebook -->
+  
+<i type="button" class="fab fa-facebook-f text-primary mx-2 btn"></i>
+
+<!-- Twitter -->
+<i type="button" class="fab fa-twitter text-primary mx-2 btn"></i>
+
+<!-- Google -->
+<i type="button" class="fab fa-google mx-2 btn text-success"></i>
+      </div>
+        
+              <span class="position-absolute top-0 start-0 ms-5 translate-middle badge rounded-pill bg-transparent" style="z-index: 1180;">
+<img src="{{url_for('static',filename='image/add.png')}}" alt="">
+    <span class="visually-hidden">unread messages</span>
+  </span>
+      </div>
+
+    </div>
+  </div>
+    </div>
+{% endfor %}
+
+
+<!-- end of carousel card -->
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+  
+</div>
+
+</div>
+</section>
+
+<!-- end of second content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- modals -->
+
+
+
+
+
+
+<!-- Modal apply-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header  modal-apply">
+        <h5 class="modal-title  badge" id="exampleModalLabel">Application Form</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body modalbody">
+<form action="/applicant" method="POST"
+>
+
+<div class="input-group input-group-sm mb-3 mx-auto"  style="width: 380px;">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+  <input type="text" name="appname" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+</div>
+
+<div class="input-group input-group-sm mb-3 mx-auto"  style="width: 380px;">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+  <input type="text" name="appemail" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+</div>
+
+<div class="input-group input-group-sm mb-3 mx-auto" style="width: 380px;">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Contact #</span>
+  <input type="text" name="appnum" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+</div>
+
+<div class="input-group input-group-sm mb-3  mx-auto" style="width: 380px;" >
+  <span class="input-group-text">Relative Description</span>
+  <textarea class="form-control"name="appdes" aria-label="With textarea"></textarea>
+</div>
+
+<div class="input-group input-group-sm mb-3 mx-auto" style="width: 380px;">
+  <label class="input-group-text" for="inputGroupSelect01">Status</label>
+  <select class="form-select" id="inputGroupSelect01" name="appstat">
+    <option selected>Choose...</option>
+    <option value="Begineer Elo">Begineer Elo</option>
+    <option value="Medium Elo">Medium Elo</option>
+    <option value="Rare Elo">Rare Elo</option>
+    <option value="High Elo">High Elo</option>
+    <option value="Chad Elo">Chad Elo</option>
+    <option value="God Elo">God Elo</option>
+  </select>
+</div>
+
+<div class="input-group input-group-sm mb-3 mx-auto" style="width: 380px;">
+  <label class="input-group-text" for="inputGroupSelect01">Experience</label>
+  <select class="form-select" id="inputGroupSelect01" name="appexp">
+    <option selected>Choose...</option>
+    <option value="1 month coaching experience">1 month coaching experience</option>
+    <option value="6 month coaching experience">6 month coaching experience</option>
+    <option value="1 year coaching experience">1-3 year coaching experience</option>
+    <option value="1 year coaching experience">5 above year coaching experience</option>
+  </select>
+</div>
+
+<input type="submit" class="btn btn-primary float-end w-50" value="apply">
+</form>
+          
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- modal for login admin -->
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header  modal-apply">
+        <h5 class="modal-title  badge" id="exampleModalLabel">Admin Login</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body modalbody">
+<form action="" method="POST"
+>
+
+<div class="input-group input-group-sm mb-3 mx-auto"  style="width: 380px;">
+  <span class="input-group-text" id="inputGroup-sizing-sm">USER</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="username">
+</div>
+
+<div class="input-group input-group-sm mb-3 mx-auto"  style="width: 380px;">
+  <span class="input-group-text" id="inputGroup-sizing-sm">PASSWORD</span>
+  <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="password">
+</div>
+
+
+<input type="submit" class="btn btn-primary float-end w-50" value="login">
+</form>
+          
+      </div>
+      
+    </div>
+  </div>
+</div>
+</div>
+
+{% for note in searched %}
+
+<div class="offcanvas offcanvas-start" tabindex="-1" style="z-index: 1330;" id="x{{note.id}}" aria-labelledby="offcanvasTopLabel">
+  <div class="offcanvas-header modal-apply">
+  <h5 id="offcanvasTopLabel" class=" mx-auto fs-4 text-capitalize text-light shadow">{{note.name}}</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body modalbody ">
+    <div class="card mx-auto " style="width: 20rem;">
+  <img src="{{url_for('static',filename='image/Profile.png')}}" class="card-img-top mx-auto " alt="..." style="height: 150px;width: 150px;">
+  <hr>
+  <div class="card-body container mx-auto">
+    <h5 class="card-title font-monospace badge text-dark text-break" style="font-size: 10px;"><span class="btn btn-sm bg-secondary badge" style="font-size: 10px;">coach</span> {{note.name}}</h5>
+        <p class="card-text font-monospace badge text-dark text-break" style="font-size: 10px;"><span class="btn btn-sm bg-secondary badge" style="font-size: 10px;">contact#</span> {{note.number}}</p>
+        <p class="card-text font-monospace badge text-dark text-break" style="font-size: 10px;"><span class="btn btn-sm bg-secondary badge" style="font-size: 10px;">email</span> {{note.email}}</p>
+        <p class="card-text font-monospace badge text-dark text-break" style="font-size: 10px;"><span class="btn btn-sm bg-secondary badge" style="font-size: 10px;">experience</span> {{note.experience}}</p>
+        <p class="card-text font-monospace badge text-dark text-break" style="font-size: 10px;"><span class="btn btn-sm bg-secondary badge" style="font-size: 10px;">status</span> {{note.status}}</p>
+  </div>
+  <p class="card-text font-monospace badge text-dark text-break" style="font-size: 10px;">Data&Year Joined: {{note.date}}</p>
+</div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

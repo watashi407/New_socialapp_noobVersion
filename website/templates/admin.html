@@ -1,0 +1,316 @@
+{% extends "base.html" %}{% block title %} ADMIN {% endblock %}
+
+<!-- home content -->
+{% block content %}
+
+<main class="container scrolls">
+  <!-- member added content -->
+  <p>
+    <button
+      class="btn btn-warning btn-sm text-white"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target=".multi-collapse"
+      aria-expanded="false"
+      aria-controls="pending"
+    >
+      PENDING REQUEST
+    </button>
+    <button
+      class="btn btn-success btn-sm"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target=".multi-collapse"
+      aria-expanded="false"
+      aria-controls="pending add"
+    >
+      LIST OF COACHES
+    </button>
+  </p>
+
+  <!-- pending body -->
+  <div class="collapse show multi-collapse" id="pending">
+    <div class="card card-body my-3 bg-body rounded">
+      <div
+        class="d-flex align-items-center p-2 text-white bg-warning rounded shadow-sm"
+      >
+        <img
+          class="me-3"
+          src="{{url_for('static',filename='image/adminadd.png')}}"
+          alt=""
+          style="height: 50px; width: 50px"
+        />
+        <span class="text-dark">
+          <h6 class="border-bottom pb-2 mb-0">Pending Request</h6>
+        </span>
+      </div>
+      <!-- Pending request -->
+      <div class="container scrollsP">
+        <!-- content pending request -->
+
+        {% for app in applicant %}
+
+        <div class="d-flex text-muted pt-3 container">
+          <svg
+            class="bd-placeholder-img flex-shrink-0 me-2 rounded"
+            width="32"
+            height="32"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder: 32x32"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          >
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#007bff" />
+            <text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+          </svg>
+
+          <div
+            class="pb-3 mb-0 d-flex flex-column small lh-sm border-bottom w-100"
+          >
+            <div class="">
+              <strong class="text-gray-dark">{{app.name}}</strong>
+              <button
+                type="button"
+                class="btn btn-close btn-sm btn-danger float-end"
+                onClick="deleteNote({{ app.id }})"
+              ></button>
+              <button
+                type="button"
+                class="btn btn-primary float-end me-5"
+                data-bs-toggle="modal"
+                data-bs-target="#x{{app.id}}"
+              >
+                add
+              </button>
+            </div>
+            <span class="d-block">{{ app.date }}</span>
+          </div>
+        </div>
+
+        <!-- Modal apply-->
+        <!-- Button trigger modal -->
+        <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="x{{app.id}}"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header bg-warning">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Accept Form Applicant
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <!-- form modal for pending -->
+                <form action="/admin" method="POST">
+                  <div
+                    class="input-group input-group-sm mb-3 mx-auto"
+                    style="width: 380px"
+                  >
+                    <span class="input-group-text" id="inputGroup-sizing-sm"
+                      >Name</span
+                    >
+                    <input
+                      type="text"
+                      name="appname"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-sm"
+                      value="{{app.name}}"
+                    />
+                  </div>
+
+                  <div
+                    class="input-group input-group-sm mb-3 mx-auto"
+                    style="width: 380px"
+                  >
+                    <span class="input-group-text" id="inputGroup-sizing-sm"
+                      >Email</span
+                    >
+                    <input
+                      type="text"
+                      name="appemail"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-sm"
+                      value="{{app.email}}"
+                    />
+                  </div>
+
+                  <div
+                    class="input-group input-group-sm mb-3 mx-auto"
+                    style="width: 380px"
+                  >
+                    <span class="input-group-text" id="inputGroup-sizing-sm"
+                      >Contact #</span
+                    >
+                    <input
+                      type="text"
+                      name="appnum"
+                      class="form-control"
+                      aria-label="Sizing example input"
+                      aria-describedby="inputGroup-sizing-sm"
+                      value="{{app.number}}"
+                    />
+                  </div>
+
+                  <div
+                    class="input-group input-group-sm mb-3 mx-auto"
+                    style="width: 380px"
+                  >
+                    <span class="input-group-text">Relative Description</span>
+                    <textarea
+                      class="form-control"
+                      name="appdes"
+                      aria-label="With textarea"
+                      value="{{app.descrip}}"
+                    >
+{{app.descrip}}</textarea
+                    >
+                  </div>
+
+                  <div
+                    class="input-group input-group-sm mb-3 mx-auto"
+                    style="width: 380px"
+                  >
+                    <label class="input-group-text" for="inputGroupSelect01"
+                      >Status</label
+                    >
+                    <select
+                      class="form-select"
+                      id="inputGroupSelect01"
+                      name="appstat"
+                    >
+                      <option selected value="{{app.status}}">
+                        {{app.status}}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div
+                    class="input-group input-group-sm mb-3 mx-auto"
+                    style="width: 380px"
+                  >
+                    <label class="input-group-text" for="inputGroupSelect01"
+                      >Experience</label
+                    >
+                    <select
+                      class="form-select"
+                      id="inputGroupSelect01"
+                      name="appexp"
+                    >
+                      <option selected value="{{app.experience}}">
+                        {{app.experience}}
+                      </option>
+                    </select>
+                  </div>
+
+                  <input
+                    type="submit"
+                    class="btn btn-success float-end w-50"
+                    value="Accept"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
+        <!-- end of content pending request -->
+      </div>
+    </div>
+  </div>
+  <!-- end of pending body -->
+
+  <!-- add body -->
+  <div class="collapse multi-collapse" id="add">
+    <div class="card card-body my-3 bg-body rounded">
+      <div
+        class="d-flex align-items-center p-2 text-white bg-success rounded shadow-sm"
+      >
+        <img
+          class="me-3"
+          src="{{url_for('static',filename='image/adminadd.png')}}"
+          alt=""
+          style="height: 50px; width: 50px"
+        />
+        <span class="text-dark">
+          <h6 class="border-bottom pb-2 mb-0">Add Coaches list</h6>
+        </span>
+      </div>
+      <!-- Pending request -->
+      <div class="container scrollsP">
+        <!-- content pending request -->
+
+        {% for apps in member %}
+
+        <div class="d-flex text-muted pt-3 container">
+          <svg
+            class="bd-placeholder-img flex-shrink-0 me-2 rounded"
+            width="32"
+            height="32"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder: 32x32"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          >
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#007bff" />
+            <text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text>
+          </svg>
+
+
+          <div class="pb-3 mb-0 small lh-sm border-bottom w-100 ">
+            <div class="d-flex justify-content-between">
+              <strong class="text-gray-dark">Name: <span class="fw-light">{{ apps.name }}</span></strong>
+              <strong class="text-gray-dark">Email: <span class="fw-light">{{ apps.email }}</span> </strong>
+               <strong class="text-gray-dark">Contact#: <span class="fw-light">{{ apps.number }}</span> </strong>
+              <strong class="text-gray-dark">Status: <span class="fw-light">{{ apps.status }}</span> </strong>
+              <strong class="text-gray-dark">Experience: <span class="fw-light">{{ apps.experience }}</span> </strong>
+            </div>
+
+            <span class="d-block mt-2">Date/time :{{ apps.date }}
+
+
+            <span class="d-block mt-2 float-end"><button class="btn btn-sm bg-danger mx-1">Delete</button></span>
+            <span class="d-block mt-2 float-end"><button class="btn btn-sm bg-primary">Update</button></button></span>
+            </span>
+           
+            
+        </div>
+        <!-- end of content pending request -->
+      </div>
+        <!-- Modal apply-->
+        <!-- Button trigger modal -->
+
+        {% endfor %}
+
+
+    </div>
+  </div>
+</main>
+
+<!-- Modal -->
+
+<script
+  type="text/javascript"
+  src="{{ url_for('static', filename='index.js') }}"
+></script>
+{% endblock %}
